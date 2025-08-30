@@ -1,1 +1,66 @@
-https://github.com/<your-username>/flipcheckpro-baked/edit/main/index.html
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FlipCheckPro</title>
+<style>
+:root{--bg:#0f1720;--card:#111827;--text:#e5e7eb;--muted:#9ca3af;--accent:#22d3ee}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+.nav{display:flex;align-items:center;gap:12px;padding:10px 0}.nav .spacer{flex:1}
+.button{background:var(--accent);color:#002129;border:none;padding:12px 16px;border-radius:10px;font-weight:800;text-decoration:none;display:inline-block}
+.button.secondary{background:#1f2937;color:var(--text);border:1px solid #2b3746}
+.card{background:var(--card);border:1px solid #2b3746;border-radius:14px;padding:16px;margin:14px 0}
+.input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #2b3746;background:#0b131c;color:var(--text)}
+.small{font-size:12px;color:var(--muted)}
+</style>
+<script>
+// ---- EDIT THIS LIST ONLY WHEN YOU HAVE NEW STRIPE LINKS ----
+const LINKS = {
+  unlock5: "https://buy.stripe.com/14AbJ3gwRcCn2HMgpxfMA03", // LIVE
+  pdf7:    "",     // paste your $7 link here later
+  consult49:"",    // paste your $49 link here later
+  deep249: "",     // paste your $249 link here later
+  agentSub:""      // paste your $99/mo link here later
+};
+// ------------------------------------------------------------
+function go(key){
+  const url = LINKS[key];
+  if(!url){ alert("Coming soon — this checkout link isn’t live yet."); return; }
+  window.location.href = url;
+}
+function zUrl(q){ return 'https://www.zillow.com/homes/'+encodeURIComponent(q)+'_rb/'; }
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <strong>FlipCheckPro</strong>
+      <div class="spacer"></div>
+      <a class="button" href="javascript:go('unlock5')">$5 Unlock</a>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:6px 0">Know your number. Make the right move.</h2>
+      <p class="small">Type a city/ZIP/address and jump to Zillow, then use the tools below.</p>
+      <div style="display:flex;gap:8px">
+        <input id="zq" class="input" placeholder="City/ZIP/Address">
+        <a class="button" href="#" onclick="const v=document.querySelector('#zq').value.trim(); if(v) this.href=zUrl(v);">Search Zillow</a>
+      </div>
+    </div>
+
+    <div class="card" style="display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <a class="button" href="javascript:go('unlock5')">Unlock ($5)</a>
+      <a class="button secondary" href="javascript:go('pdf7')">Fix List PDF ($7)</a>
+      <a class="button secondary" href="javascript:go('consult49')">Quick Consult ($49)</a>
+      <a class="button secondary" href="javascript:go('deep249')">Deep Dive ($249)</a>
+      <a class="button secondary" href="javascript:go('agentSub')">Agent Subscription ($99/mo)</a>
+    </div>
+
+    <div class="card">
+      <p class="small">Only the $5 Unlock is live now. Add the other Stripe URLs once and they’ll work immediately after you hit “Commit changes.”</p>
+    </div>
+  </div>
+</body>
+</html>
